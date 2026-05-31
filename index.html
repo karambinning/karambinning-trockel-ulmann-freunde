@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trockel, Ulmann &amp; Freunde — independent café, Pembroke Street, Cambridge</title>
+<meta name="description" content="An independent café on Pembroke Street, Cambridge. Handmade panini, soup of the day, German-style cakes and properly good coffee. Trockel, Ulmann &amp; Friends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Lora:ital,wght@0,400;0,600;1,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE6D3;
+    --paper-soft:#F6EFDD;
+    --ink:#15110D;
+    --ink-soft:#3D352B;
+    --brick:#B7402A;
+    --brick-dark:#8E2F1E;
+    --moss:#2E4435;
+    --moss-dark:#1E2D24;
+    --rule:rgba(21,17,13,.18);
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --body:"Lora",Georgia,serif;
+    --hand:"Caveat","Brush Script MT",cursive;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:clamp(1rem,.55rem + .85vw,1.15rem);
+    line-height:1.55;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* Paper grain – inline SVG, no external dep */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0.38 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+    opacity:.5;
+    mix-blend-mode:multiply;
+    z-index:2;
+  }
+  ::selection{background:var(--brick);color:var(--paper)}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{margin:0;font-family:var(--serif);font-weight:700;letter-spacing:-.018em;text-wrap:balance}
+  p{margin:0;text-wrap:pretty;hyphens:auto}
+  img{max-width:100%;display:block}
+
+  /* ───── Top nav ───── */
+  .nav{
+    position:relative;z-index:5;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem clamp(1.1rem,3vw,2.4rem);
+    font-family:var(--serif);
+    font-size:.92rem;
+    letter-spacing:.02em;
+  }
+  .nav__mark{
+    font-weight:700;
+    font-variation-settings:"opsz" 14;
+    display:flex;align-items:baseline;gap:.4rem;
+  }
+  .nav__mark .amp{font-family:var(--hand);font-weight:700;color:var(--brick);font-size:1.4em;line-height:0;position:relative;top:.06em}
+  .nav__pill{
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.42rem .9rem;
+    border:1px solid var(--ink);
+    border-radius:999px;
+    font-size:.78rem;
+    font-family:var(--body);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    background:var(--paper);
+  }
+  .nav__pill::before{
+    content:"";width:.55rem;height:.55rem;border-radius:50%;
+    background:var(--moss);box-shadow:0 0 0 3px rgba(46,68,53,.18);
+  }
+  .nav__pill[data-state="closed"]::before{background:var(--brick);box-shadow:0 0 0 3px rgba(183,64,42,.18)}
+  .nav__tel{
+    font-family:var(--serif);font-weight:700;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:2px;
+    transition:color .2s;
+  }
+  .nav__tel:hover{color:var(--brick);border-color:var(--brick)}
+
+  /* ───── Masthead hero ───── */
+  .hero{
+    position:relative;
+    padding:clamp(2rem,7vw,5rem) clamp(1.1rem,3vw,2.4rem) clamp(2.5rem,8vw,6rem);
+  }
+  .hero__meta{
+    display:flex;flex-wrap:wrap;gap:1rem 2rem;
+    font-family:var(--body);font-style:italic;
+    font-size:.95rem;color:var(--ink-soft);
+    margin-bottom:clamp(1.4rem,3vw,2.4rem);
+    padding-bottom:1rem;
+    border-bottom:1px solid var(--rule);
+  }
+  .hero__meta span::before{
+    content:"❋";color:var(--brick);margin-right:.5rem;font-style:normal;
+  }
+  .masthead{
+    font-family:var(--serif);
+    font-variation-settings:"opsz" 144,"SOFT" 0;
+    line-height:.85;
+    letter-spacing:-.045em;
+    font-weight:900;
+    margin:0;
+    color:var(--ink);
+  }
+  .masthead .line{
+    display:block;
+    font-size:clamp(3.5rem,15vw,12rem);
+  }
+  .masthead .line--two{
+    padding-left:clamp(0rem,3vw,3rem);
+  }
+  .masthead .line--three{
+    display:flex;align-items:flex-end;gap:clamp(.6rem,2vw,1.5rem);
+    padding-left:clamp(2rem,8vw,8rem);
+    line-height:1;
+  }
+  .masthead .amp{
+    font-family:var(--hand);
+    font-weight:700;
+    color:var(--brick);
+    font-size:clamp(4rem,16vw,13rem);
+    line-height:.7;
+    letter-spacing:0;
+    transform:rotate(-8deg) translateY(.05em);
+    display:inline-block;
+  }
+  .masthead .freunde{
+    font-family:var(--hand);
+    font-weight:700;
+    color:var(--moss);
+    font-size:clamp(3.2rem,14vw,11rem);
+    line-height:.85;
+    letter-spacing:-.01em;
+    transform:rotate(-2.5deg);
+    display:inline-block;
+  }
+  .hero__sub{
+    margin-top:clamp(1.6rem,3vw,2.4rem);
+    max-width:38rem;
+    font-size:clamp(1.05rem,.5rem + .9vw,1.35rem);
+    line-height:1.45;
+    color:var(--ink-soft);
+  }
+  .hero__sub b{color:var(--ink);font-weight:600}
+
+  /* ───── Marquee ───── */
+  .marquee{
+    position:relative;z-index:1;
+    overflow:hidden;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    background:var(--brick);
+    color:var(--paper);
+    --speed:42s;
+  }
+  .marquee__track{
+    display:flex;gap:3.5rem;
+    padding:1.1rem 0;
+    width:max-content;
+    animation:scroll var(--speed) linear infinite;
+    font-family:var(--serif);
+    font-weight:700;
+    font-variation-settings:"opsz" 96;
+    font-size:clamp(1.4rem,3vw,2.4rem);
+    letter-spacing:-.015em;
+    white-space:nowrap;
+    text-transform:lowercase;
+  }
+  .marquee__track span{display:inline-flex;align-items:center;gap:3.5rem}
+  .marquee__track span::after{
+    content:"❋";color:var(--paper);opacity:.55;font-size:.7em;
+  }
+  @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.marquee__track{animation:none}}
+
+  /* ───── Generic section ───── */
+  .section{
+    position:relative;z-index:1;
+    padding:clamp(3rem,8vw,6rem) clamp(1.1rem,3vw,2.4rem);
+    max-width:84rem;margin:0 auto;
+  }
+  .eyebrow{
+    font-family:var(--hand);
+    color:var(--brick);
+    font-size:clamp(1.6rem,3vw,2.4rem);
+    line-height:1;
+    transform:rotate(-3deg);
+    display:inline-block;
+    margin-bottom:.8rem;
+  }
+  .section-title{
+    font-family:var(--serif);
+    font-variation-settings:"opsz" 80;
+    font-weight:700;
+    font-size:clamp(2.2rem,5vw,4rem);
+    letter-spacing:-.025em;
+    line-height:1;
+  }
+
+  /* ───── Im Café (intro) ───── */
+  .intro{background:var(--paper-soft)}
+  .intro__grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(2rem,5vw,4rem);
+    align-items:start;
+  }
+  @media(min-width:62rem){
+    .intro__grid{grid-template-columns:1fr 1.4fr}
+  }
+  .intro__lede{
+    font-family:var(--serif);
+    font-variation-settings:"opsz" 36;
+    font-size:clamp(1.4rem,1rem + 1.2vw,2.1rem);
+    line-height:1.25;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  .intro__lede em{
+    font-style:italic;
+    color:var(--brick-dark);
+  }
+  .intro__body p + p{margin-top:1rem}
+  .intro__body{color:var(--ink-soft);font-size:1.05rem;line-height:1.65}
+  .intro__body b{color:var(--ink);font-weight:600}
+
+  /* ───── Auf der Karte (menu) ───── */
+  .menu{background:var(--moss);color:var(--paper)}
+  .menu .eyebrow{color:#E9C46A}
+  .menu .section-title{color:var(--paper)}
+  .menu__intro{
+    color:rgba(247,240,222,.78);
+    max-width:34rem;
+    margin:1rem 0 clamp(2.4rem,5vw,3.6rem);
+    font-style:italic;
+  }
+  .menu__list{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:.2rem 0;
+    border-top:1px solid rgba(247,240,222,.22);
+  }
+  .menu-row{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:baseline;
+    gap:1rem;
+    padding:clamp(1.2rem,2.5vw,1.8rem) 0;
+    border-bottom:1px solid rgba(247,240,222,.22);
+  }
+  .menu-row__name{
+    font-family:var(--serif);
+    font-variation-settings:"opsz" 72;
+    font-weight:700;
+    font-size:clamp(1.5rem,3vw,2.6rem);
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .menu-row__de{
+    font-family:var(--hand);
+    color:#E9C46A;
+    font-size:clamp(1.1rem,2vw,1.6rem);
+    line-height:1;
+    margin-left:.4rem;
+    transform:translateY(-.1em) rotate(-2deg);
+    display:inline-block;
+  }
+  .menu-row__dot{
+    align-self:end;
+    flex:1;height:1px;
+    background:repeating-linear-gradient(to right,rgba(247,240,222,.4) 0 2px,transparent 2px 8px);
+    margin:0 .8rem .55rem;
+    grid-column:2;
+  }
+  .menu-row__note{
+    font-family:var(--body);font-style:italic;
+    color:rgba(247,240,222,.7);
+    font-size:.95rem;
+    text-align:right;
+    max-width:24rem;
+  }
+  .menu__footnote{
+    margin-top:2rem;
+    color:rgba(247,240,222,.55);
+    font-size:.88rem;font-style:italic;
+  }
+  /* Mobile menu: stack note below */
+  @media(max-width:48rem){
+    .menu-row{grid-template-columns:1fr;gap:.4rem}
+    .menu-row__dot{display:none}
+    .menu-row__note{text-align:left;max-width:none}
+  }
+
+  /* ───── Cards/strip about what makes it indie ───── */
+  .strip{background:var(--paper)}
+  .strip__grid{
+    display:grid;gap:clamp(1.4rem,3vw,2.4rem);
+    grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+    margin-top:2rem;
+  }
+  .strip__card{
+    padding:clamp(1.4rem,2.5vw,1.8rem);
+    border:1px solid var(--ink);
+    background:var(--paper-soft);
+    position:relative;
+  }
+  .strip__card:nth-child(odd){background:#F1E7CB;transform:rotate(-.4deg)}
+  .strip__card:nth-child(even){transform:rotate(.3deg)}
+  .strip__card h3{
+    font-family:var(--serif);
+    font-size:clamp(1.3rem,2.5vw,1.7rem);
+    line-height:1.05;
+    margin-bottom:.6rem;
+    letter-spacing:-.01em;
+  }
+  .strip__card .stamp{
+    position:absolute;top:.7rem;right:.9rem;
+    font-family:var(--hand);color:var(--brick);
+    font-size:1.5rem;line-height:1;
+    transform:rotate(8deg);
+  }
+  .strip__card p{color:var(--ink-soft);font-size:.98rem;line-height:1.55}
+
+  /* ───── Find us ───── */
+  .find{
+    background:var(--ink);color:var(--paper);
+    padding:clamp(3rem,8vw,6rem) clamp(1.1rem,3vw,2.4rem);
+    position:relative;z-index:1;
+  }
+  .find__inner{max-width:84rem;margin:0 auto}
+  .find .eyebrow{color:#E9C46A}
+  .find .section-title{color:var(--paper)}
+  .find__grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(2rem,5vw,4rem);
+    margin-top:clamp(2rem,4vw,3rem);
+    align-items:start;
+  }
+  @media(min-width:60rem){
+    .find__grid{grid-template-columns:1.2fr 1fr}
+  }
+  .find__addr{
+    font-family:var(--serif);
+    font-variation-settings:"opsz" 60;
+    font-weight:700;
+    font-size:clamp(1.7rem,3.5vw,2.8rem);
+    line-height:1.05;
+    letter-spacing:-.02em;
+  }
+  .find__addr span{display:block}
+  .find__addr .pc{color:#E9C46A;font-family:var(--hand);font-weight:700;font-size:.7em;letter-spacing:0;margin-top:.4rem}
+  .find__tel{
+    display:inline-block;margin-top:1.5rem;
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(1.8rem,4vw,3rem);
+    border-bottom:2px solid var(--paper);
+    line-height:1.1;
+    transition:color .2s,border-color .2s;
+  }
+  .find__tel:hover{color:#E9C46A;border-color:#E9C46A}
+  .hours{
+    border-top:1px solid rgba(247,240,222,.25);
+    padding-top:1.5rem;
+  }
+  .hours h3{
+    font-family:var(--hand);
+    color:#E9C46A;
+    font-size:1.8rem;
+    font-weight:700;
+    margin-bottom:1rem;
+    line-height:1;
+  }
+  .hours dl{
+    margin:0;display:grid;
+    grid-template-columns:auto 1fr auto;
+    row-gap:.55rem;
+    font-size:clamp(1rem,.6rem + .5vw,1.15rem);
+    align-items:baseline;
+  }
+  .hours dt{font-family:var(--serif);font-weight:600;letter-spacing:.02em}
+  .hours .ldot{
+    background:repeating-linear-gradient(to right,rgba(247,240,222,.35) 0 2px,transparent 2px 8px);
+    height:1px;align-self:end;margin:0 .8rem .35rem;
+  }
+  .hours dd{margin:0;font-variant-numeric:tabular-nums;color:rgba(247,240,222,.85)}
+  .hours dd.shut{color:rgba(247,240,222,.45);font-style:italic}
+  .find__note{
+    margin-top:1.2rem;
+    font-style:italic;
+    color:rgba(247,240,222,.6);
+    font-size:.92rem;
+  }
+
+  /* ───── Footer ───── */
+  .foot{
+    background:var(--paper-soft);
+    padding:clamp(2rem,5vw,4rem) clamp(1.1rem,3vw,2.4rem) 2rem;
+    border-top:1px solid var(--rule);
+    position:relative;z-index:1;
+    color:var(--ink-soft);
+  }
+  .foot__inner{
+    max-width:84rem;margin:0 auto;
+    display:flex;flex-wrap:wrap;gap:1.6rem 3rem;
+    align-items:flex-end;justify-content:space-between;
+  }
+  .foot__mark{
+    font-family:var(--serif);font-weight:700;
+    font-size:clamp(1.4rem,2vw,1.8rem);
+    line-height:1.05;color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .foot__mark .amp{font-family:var(--hand);color:var(--brick);font-size:1.5em;line-height:0;position:relative;top:.08em;margin:0 .1em}
+  .foot__col{font-size:.92rem;line-height:1.55}
+  .foot__col b{color:var(--ink);font-weight:600;display:block;font-family:var(--serif);margin-bottom:.3rem;font-size:1rem}
+  .foot__legal{
+    margin-top:2.4rem;padding-top:1.4rem;
+    border-top:1px solid var(--rule);
+    font-size:.78rem;color:var(--ink-soft);
+    display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    font-family:var(--body);font-style:italic;
+  }
+
+  /* ───── Scroll-driven reveals (progressive) ───── */
+  @supports (animation-timeline:view()){
+    .reveal{
+      animation:rise both;
+      animation-timeline:view();
+      animation-range:entry 0% cover 30%;
+    }
+    @keyframes rise{
+      from{opacity:0;transform:translateY(1.5rem)}
+      to{opacity:1;transform:translateY(0)}
+    }
+  }
+  @media(prefers-reduced-motion:reduce){
+    .masthead .amp,.masthead .freunde,.strip__card,.eyebrow{transform:none !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__mark">Trockel, Ulmann <span class="amp">&amp;</span> Freunde</div>
+  <div style="display:flex;align-items:center;gap:1.2rem">
+    <span class="nav__pill" id="openpill" data-state="closed">Closed</span>
+    <a class="nav__tel" href="tel:+441223460923">01223&nbsp;460923</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero__meta">
+      <span>Independent café</span>
+      <span>13 Pembroke Street, Cambridge</span>
+      <span>Open Monday — Saturday</span>
+    </div>
+
+    <h1 class="masthead">
+      <span class="line line--one">Trockel,</span>
+      <span class="line line--two">Ulmann</span>
+      <span class="line line--three">
+        <span class="amp" aria-hidden="true">&amp;</span>
+        <span class="freunde">Freunde</span>
+      </span>
+      <span class="visually-hidden" style="position:absolute;left:-9999px">&amp; Friends</span>
+    </h1>
+
+    <p class="hero__sub">
+      A small café tucked into Pembroke Street, run the way cafés used to be run —
+      <b>handmade panini, soup of the day, German-style cakes</b>, and properly good
+      coffee. The clue's in the name: <em>und Freunde</em> — &amp; Friends. Most of
+      ours have been coming for years.
+    </p>
+  </section>
+
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Handmade Panini</span><span>Soup of the Day</span><span>German-style Cakes</span><span>Filter &amp; Espresso</span><span>Fresh Juices</span><span>Pembroke Street, CB2</span>
+      <span>Handmade Panini</span><span>Soup of the Day</span><span>German-style Cakes</span><span>Filter &amp; Espresso</span><span>Fresh Juices</span><span>Pembroke Street, CB2</span>
+    </div>
+  </section>
+
+  <section class="section intro reveal" id="about">
+    <div class="intro__grid">
+      <div>
+        <span class="eyebrow">Im Café</span>
+        <h2 class="section-title">A café, not a&nbsp;chain.</h2>
+      </div>
+      <div class="intro__body">
+        <p class="intro__lede">
+          <em>Trockel, Ulmann &amp; Freunde</em> has sat on Pembroke Street for many
+          years, in the shadow of Pembroke College — a small room with window stools,
+          shelves of mismatched things, and the smell of something warming on the hob.
+        </p>
+        <p>
+          It's the kind of place where the people behind the counter remember
+          your order and where the menu shifts with what's been baked that morning.
+          The German half of the name is honest — <b>cakes are baked the way
+          you'd find them in a Konditorei</b>, the soups change with the week,
+          and the coffee is taken seriously without ceremony.
+        </p>
+        <p>
+          Walk-in only. Sit by the window with a panini and watch Pembroke Street
+          go by. Or grab a takeaway cup and a slice of something warm on your way
+          to a lecture. That's the whole offer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section menu reveal" id="menu">
+    <span class="eyebrow">Auf der Karte</span>
+    <h2 class="section-title">What's on the&nbsp;counter.</h2>
+    <p class="menu__intro">
+      The menu shifts daily — these are the categories you'll always find.
+      For today's exact specials, pop in or call ahead.
+    </p>
+    <div class="menu__list">
+
+      <div class="menu-row">
+        <div class="menu-row__name">Handmade Panini <span class="menu-row__de">Belegte Brote</span></div>
+        <div class="menu-row__dot"></div>
+        <div class="menu-row__note">Pressed to order on the counter griddle.</div>
+      </div>
+
+      <div class="menu-row">
+        <div class="menu-row__name">Soup of the Day <span class="menu-row__de">Suppe des Tages</span></div>
+        <div class="menu-row__dot"></div>
+        <div class="menu-row__note">Lentil &amp; chicken are regulars. The board changes with the week.</div>
+      </div>
+
+      <div class="menu-row">
+        <div class="menu-row__name">German-style Cakes <span class="menu-row__de">Kuchen</span></div>
+        <div class="menu-row__dot"></div>
+        <div class="menu-row__note">Baked that morning. Whichever survives the lunch rush is yours.</div>
+      </div>
+
+      <div class="menu-row">
+        <div class="menu-row__name">Coffee <span class="menu-row__de">Kaffee</span></div>
+        <div class="menu-row__dot"></div>
+        <div class="menu-row__note">Filter, espresso, the usual builds. Properly made.</div>
+      </div>
+
+      <div class="menu-row">
+        <div class="menu-row__name">Fresh Juices &amp; Soft Drinks <span class="menu-row__de">Säfte</span></div>
+        <div class="menu-row__dot"></div>
+        <div class="menu-row__note">A short fridge of cold things, refreshed daily.</div>
+      </div>
+
+    </div>
+    <p class="menu__footnote">No printed prices online — they shift with the seasons. Counter board has the day's numbers.</p>
+  </section>
+
+  <section class="section strip reveal" id="why">
+    <span class="eyebrow">Warum hier</span>
+    <h2 class="section-title">Why people come&nbsp;back.</h2>
+    <div class="strip__grid">
+      <div class="strip__card">
+        <span class="stamp">❋</span>
+        <h3>Walk-in, not booked.</h3>
+        <p>No table reservation, no app, no QR menu. You walk in, see what's on, order at the counter.</p>
+      </div>
+      <div class="strip__card">
+        <span class="stamp">❋</span>
+        <h3>A short menu, done&nbsp;properly.</h3>
+        <p>Five categories. Everything made the same morning it's served. If it's gone by 3pm, that's the day done.</p>
+      </div>
+      <div class="strip__card">
+        <span class="stamp">❋</span>
+        <h3>The window stools are the&nbsp;view.</h3>
+        <p>Pembroke Street, the rear of Pembroke College, students cycling past. The room is small on purpose.</p>
+      </div>
+      <div class="strip__card">
+        <span class="stamp">❋</span>
+        <h3>You're a regular by visit&nbsp;three.</h3>
+        <p>That's the &amp; Freunde bit. The staff remember orders and names — it isn't a marketing line, it's just how the room works.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="find" id="find">
+    <div class="find__inner">
+      <span class="eyebrow">Finden Sie&nbsp;uns</span>
+      <h2 class="section-title">Pembroke Street, since&nbsp;forever.</h2>
+
+      <div class="find__grid">
+        <div>
+          <p class="find__addr">
+            <span>13 Pembroke Street</span>
+            <span>Cambridge</span>
+            <span class="pc">CB2 3QY</span>
+          </p>
+          <a class="find__tel" href="tel:+441223460923">01223 460923</a>
+          <p class="find__note">Opposite the rear gate of Pembroke College. A two-minute walk from Market Square.</p>
+        </div>
+
+        <div class="hours">
+          <h3>Öffnungszeiten</h3>
+          <dl>
+            <dt>Mon</dt><span class="ldot"></span><dd>07:30 — 17:00</dd>
+            <dt>Tue</dt><span class="ldot"></span><dd>07:30 — 17:00</dd>
+            <dt>Wed</dt><span class="ldot"></span><dd>07:30 — 17:00</dd>
+            <dt>Thu</dt><span class="ldot"></span><dd>07:30 — 17:00</dd>
+            <dt>Fri</dt><span class="ldot"></span><dd>07:30 — 17:00</dd>
+            <dt>Sat</dt><span class="ldot"></span><dd>10:00 — 17:00</dd>
+            <dt>Sun</dt><span class="ldot"></span><dd class="shut">Closed</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__mark">Trockel, Ulmann <span class="amp">&amp;</span> Freunde</div>
+    <div class="foot__col">
+      <b>Visit</b>
+      13 Pembroke Street<br>
+      Cambridge CB2 3QY
+    </div>
+    <div class="foot__col">
+      <b>Call</b>
+      <a href="tel:+441223460923">01223 460923</a>
+    </div>
+    <div class="foot__col">
+      <b>Hours</b>
+      Mon — Fri · 07:30 – 17:00<br>
+      Sat · 10:00 – 17:00<br>
+      Sun · closed
+    </div>
+  </div>
+  <div class="foot__legal">
+    <span>An independent Cambridge café.</span>
+    <span>Site by <a href="https://binning.ai" style="border-bottom:1px solid currentColor">Binning.AI</a></span>
+  </div>
+</footer>
+
+<script>
+  // Open / closed pill — UK timezone, fail silently.
+  (function(){
+    try{
+      var pill = document.getElementById('openpill');
+      if(!pill) return;
+      var now = new Date(new Date().toLocaleString('en-GB',{timeZone:'Europe/London'}));
+      var day = now.getDay(); // 0 Sun … 6 Sat
+      var hm  = now.getHours()*60 + now.getMinutes();
+      // [openMin, closeMin] per weekday, null = closed
+      var sched = {
+        1:[7*60+30, 17*60], 2:[7*60+30, 17*60], 3:[7*60+30, 17*60],
+        4:[7*60+30, 17*60], 5:[7*60+30, 17*60],
+        6:[10*60,   17*60],
+        0:null
+      };
+      var today = sched[day];
+      var isOpen = today && hm >= today[0] && hm < today[1];
+      if(isOpen){
+        pill.textContent = 'Open · until ' + Math.floor(today[1]/60).toString().padStart(2,'0') + ':00';
+        pill.setAttribute('data-state','open');
+      } else {
+        // find next opening
+        var labels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        for(var i=0;i<7;i++){
+          var d = (day + (i===0 && today && hm < today[0] ? 0 : i+1)) % 7;
+          if(i===0 && today && hm < today[0]){ d = day; }
+          if(sched[d]){
+            var sameDay = (d===day && today && hm < today[0]);
+            var openH = Math.floor(sched[d][0]/60), openM = sched[d][0]%60;
+            var hh = openH.toString().padStart(2,'0') + ':' + openM.toString().padStart(2,'0');
+            pill.textContent = 'Closed · opens ' + (sameDay ? hh : labels[d] + ' ' + hh);
+            pill.setAttribute('data-state','closed');
+            break;
+          }
+        }
+      }
+    }catch(e){/* silent */}
+  })();
+</script>
+
+</body>
+</html>
